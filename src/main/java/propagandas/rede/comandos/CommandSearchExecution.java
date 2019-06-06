@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class CommandSearchExecution {
-	public synchronized static String execCommand(final String commandLine) throws IOException {
+	public synchronized static String execCommand(final String commandLine) throws IOException, InterruptedException {
 
 		boolean success = false;
 		String result;
@@ -33,6 +33,8 @@ public class CommandSearchExecution {
 			result = cmdOut.toString();
 
 			success = true;
+			
+			Thread.sleep(30000);
 
 			input.close();
 			

@@ -13,7 +13,7 @@ public class SearchIPs {
 		String[] tokens = txt.split(" "); 
 		
 		for (int i = 0; i < tokens.length; i++) {			
-			if(tokens[i].equalsIgnoreCase("de")) {
+			if(tokens[i].equals("A")) {
 				positions.add(i+1);
 			}
 		}
@@ -27,5 +27,32 @@ public class SearchIPs {
 		}
 		
 		return ips;
+	}
+	
+	public static ArrayList<Integer> searchBytes(String txt){
+		ArrayList<Integer> positions = new ArrayList<Integer>();
+		
+		ArrayList<Integer> bts = new ArrayList<Integer>();
+		
+		String[] tokens = txt.split(" "); 
+		
+		for (int i = 0; i < tokens.length; i++) {			
+			if(tokens[i].equals("length")) {
+				positions.add(i+1);
+			}
+		}
+		
+		for (int i = 0; i < tokens.length; i++) {
+			for (Integer position : positions) {
+				if(i == position) {
+					String temp = tokens[i].toString().replace(")","");
+					Integer bt = Integer.parseInt(temp);
+					bts.add(bt);
+				}
+			}
+		}
+		
+		return bts;
+		
 	}
 }
