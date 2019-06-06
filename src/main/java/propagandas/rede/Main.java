@@ -2,7 +2,7 @@ package propagandas.rede;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
+import java.util.Scanner;
 import propagandas.rede.comandos.CommandSearchExecution;
 import propagandas.rede.filtro.SearchIPs;
 
@@ -10,8 +10,12 @@ public class Main {
 
 	public static void main(String[] args) throws IOException, InterruptedException {
 		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Insira o endereço IP da sua máquina: ");
+		String ipLocal = sc.nextLine();
+		sc.close();
 		String txt = CommandSearchExecution
-				.execCommand("tcpdump -i eth1 -S -vv -nn -l dst 10.8.32.80 | grep -1 \"ad\\.\" --line-buffered");
+				.execCommand("tcpdump -i eth1 -S -vv -nn -l dst " + ipLocal + " | grep -1 \"ad\\.\" --line-buffered");
 		
 		ArrayList<String> ips = new ArrayList<String>(SearchIPs.searchSite(txt));
 
